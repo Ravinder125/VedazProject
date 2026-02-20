@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-poppins: "Poppins", "sans-serif", "system-ui";
+  --color-primary: oklab(0.55 -0.03 -0.24);
+}
+
+@layer components {
+  body {
+    @apply bg-gray-50 text-gray-800 font-poppins;
+  }
+
+  h1 {
+    @apply text-3xl font-bold mb-6;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold
+  }
+
+  h3 {
+    @apply text-xl font-medium;
+  }
+
+  label,
+  p {
+    @apply text-sm text-gray-600 tracking-wide
+  }
+
+
+}
+
+@layer base {
+  .card {
+    @apply p-8 max-w-lg m-auto shadow-lg border border-gray-200 mt-10 rounded-lg;
+  }
+
+  .form-input {
+    @apply border border-gray-400 rounded py-1 px-2
+  }
+
+  .form-error {
+    @apply text-xs
+  }
+}

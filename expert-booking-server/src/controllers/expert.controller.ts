@@ -30,6 +30,7 @@ export const getExperts = asyncHandler(
         }
 
         const total = await Expert.countDocuments(query);
+        const categories = await Expert.distinct("category")
 
         const experts = await Expert.find(query)
             .skip((page - 1) * limit)
@@ -42,6 +43,7 @@ export const getExperts = asyncHandler(
             totalPages: Math.ceil(total / limit),
             total,
             data: experts,
+            categories
         });
     }
 );
