@@ -22,10 +22,11 @@ const MyBookings = () => {
         } catch (error) {
             alert("Error fetching bookings");
         } finally {
-            setLoading(true)
+            setLoading(false)
         }
     };
 
+    if (loading) return <Loading />
 
     return (
         <Layout>
@@ -49,23 +50,20 @@ const MyBookings = () => {
                 </div>
 
                 {
-                    loading
-                        ? <Loading />
-                        : (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:grid-cols-3 mt-6">
-                                {bookings.map((b) => (
-                                    <BookingCard
-                                        key={b._id}
-                                        id={b._id}
-                                        date={b.date}
-                                        expertName={b.expertId.name}
-                                        status={b.status}
-                                        timeSlot={b.timeSlot}
-                                    />
-                                ))}
-                            </div>
-                        )
-                }
+
+                }                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:grid-cols-3 mt-6">
+                    {bookings.map((b) => (
+                        <BookingCard
+                            key={b._id}
+                            id={b._id}
+                            date={b.date}
+                            expertName={b.expertId.name}
+                            status={b.status}
+                            timeSlot={b.timeSlot}
+                        />
+                    ))}
+
+                </div>
             </Container>
         </Layout>
     );
