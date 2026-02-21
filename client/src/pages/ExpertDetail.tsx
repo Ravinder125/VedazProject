@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../api/axios";
 import { socket } from "../hooks/useSocket";
 import Container from "../components/ui/Container";
+import { Loading } from "../components/Loading";
 
 interface SlotGroup {
     date: string;
@@ -89,7 +90,7 @@ const ExpertDetail = () => {
         };
     }, [expert]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loading />
     if (!expert) return <p>Expert not found</p>;
 
     return (

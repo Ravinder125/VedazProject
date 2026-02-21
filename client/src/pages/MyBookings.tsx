@@ -3,14 +3,17 @@ import { api } from "../api/axios";
 import Search from "../components/Search";
 import Layout from "../components/ui/Layout";
 import Container from "../components/ui/Container";
+import { Loading } from "../components/Loading";
 
 
 const MyBookings = () => {
     const [email, setEmail] = useState<string>("");
     const [bookings, setBookings] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(false)
 
     const fetchBookings = async () => {
         try {
+            setLoading(true)
             const { data } = await api.get("/bookings", {
                 params: { email },
             });
@@ -18,8 +21,11 @@ const MyBookings = () => {
             setBookings(data.data);
         } catch (error) {
             alert("Error fetching bookings");
+        } finally {
+            setLoading(true)
         }
     };
+
 
     return (
         <Layout>
@@ -42,19 +48,24 @@ const MyBookings = () => {
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:grid-cols-3 mt-6">
-                    {bookings.map((b) => (
-                        <BookingCard
-                            key={b._id}
-                            id={b._id}
-                            date={b.date}
-                            expertName={b.expertId.name}
-                            status={b.status}
-                            timeSlot={b.timeSlot}
-                        />
-                    ))}
-
-                </div>
+                {
+                    loading
+                        ? <Loading />
+                        : (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:grid-cols-3 mt-6">
+                                {bookings.map((b) => (
+                                    <BookingCard
+                                        key={b._id}
+                                        id={b._id}
+                                        date={b.date}
+                                        expertName={b.expertId.name}
+                                        status={b.status}
+                                        timeSlot={b.timeSlot}
+                                    />
+                                ))}
+                            </div>
+                        )
+                }
             </Container>
         </Layout>
     );

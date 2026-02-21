@@ -6,6 +6,7 @@ import { zodValidator } from "../utils/zodValidator";
 import { bookingSchema, type BookingFormData } from "../validation/bookingForm.schema";
 import Layout from "../components/ui/Layout";
 import { InputBox } from "../components/ui/InputBox";
+import { Loading } from "../components/Loading";
 
 
 
@@ -70,6 +71,7 @@ const BookingForm = () => {
         }
     };
 
+    if (loading) return <Loading />
     if (!state) return <p>No booking data found</p>;
 
     return (
