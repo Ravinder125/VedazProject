@@ -7,6 +7,7 @@ available time slots, and book sessions in real time.
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge)](https://vedaz-project.vercel.app/)
 [![Backend API](https://img.shields.io/badge/API-Render-blue?style=for-the-badge)](https://vedazproject.onrender.com)
+[![Video Link](https://img.shields.io/badge/Video-Link-blue?style=for-the-badge)](https://www.loom.com/share/eb9230b3327a494daad27bf7325309b6)
 
 ## Tech Stack
 
