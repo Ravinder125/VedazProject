@@ -19,7 +19,6 @@ interface Expert {
 const Experts = () => {
     const [experts, setExperts] = useState<Expert[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string>("")
     const [search, setSearch] = useState<string>("");
     const [category, setCategory] = useState<string>("");
     const [categories, setCategories] = useState([])

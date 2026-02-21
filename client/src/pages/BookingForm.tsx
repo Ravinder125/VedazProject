@@ -44,6 +44,7 @@ const BookingForm = () => {
         } = zodValidator<BookingFormData>(form, bookingSchema);
 
         if (!success) {
+            console.error(message)
             setError(errors!?.[0])
             return
         }

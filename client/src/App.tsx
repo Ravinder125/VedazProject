@@ -1,17 +1,27 @@
 import { Routes, Route } from "react-router-dom";
-import Experts from "./pages/Experts";
-import ExpertDetail from "./pages/ExpertDetail";
-import MyBookings from "./pages/MyBookings";
-import BookingForm from "./pages/BookingForm";
+import { Suspense, lazy } from "react";
+
+/* Lazy loaded pages */
+const Experts = lazy(() => import("./pages/Experts"));
+const ExpertDetail = lazy(() => import("./pages/ExpertDetail"));
+const MyBookings = lazy(() => import("./pages/MyBookings"));
+const BookingForm = lazy(() => import("./pages/BookingForm"));
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Experts />} />
-      <Route path="/experts/:id" element={<ExpertDetail />} />
-      <Route path="/my-bookings" element={<MyBookings />} />
-      <Route path="/bookings" element={<BookingForm />} />
-    </Routes>
+    <Suspense
+fallback={
+  <div className="flex items-center justify-center h-screen text-lg font-semibold">
+    Loading page...
+  </div>
+}    >
+      <Routes>
+        <Route path="/" element={<Experts />} />
+        <Route path="/experts/:id" element={<ExpertDetail />} />
+        <Route path="/my-bookings" element={<MyBookings />} />
+        <Route path="/bookings" element={<BookingForm />} />
+      </Routes>
+    </Suspense>
   );
 }
 
