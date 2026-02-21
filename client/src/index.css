@@ -42,4 +42,8 @@
   .form-error {
     @apply text-xs
   }
+
+  .submit-btn {
+    @apply bg-primary text-white px-3 py-1 rounded-md text-nowrap tracking-wide disabled:opacity-95 disabled:cursor-not-allowed cursor-pointer
+  }
 }

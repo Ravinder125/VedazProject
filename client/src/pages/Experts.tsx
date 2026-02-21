@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useDebounce } from "../hooks/useDebounc";
 import Search from "../components/Search";
 import Container from "../components/ui/Container";
-import Layout from "../components/ui/layou";
+import Layout from "../components/ui/Layout";
+import Pagination from "../components/Pagination";
 
 interface Expert {
     _id: string;
@@ -111,7 +112,7 @@ const Experts = () => {
                 </div>
 
                 <div className="mt-6">
-                    <div className="flex justify-center items-center gap-2 ">
+                    {/* <div className="flex justify-center items-center gap-2 ">
                         <button
                             className="px-3 py-1 border rounded disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
                             disabled={page === 0}
@@ -141,7 +142,13 @@ const Experts = () => {
                         >
                             Next
                         </button>
-                    </div>
+                    </div> */}
+
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={(page: number) => setPage(page)}
+                    />
                 </div>
             </Container>
 

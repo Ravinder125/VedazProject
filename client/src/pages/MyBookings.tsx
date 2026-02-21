@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { api } from "../api/axios";
 import Search from "../components/Search";
-import Layout from "../components/ui/layou";
+import Layout from "../components/ui/Layout";
 import Container from "../components/ui/Container";
+
 
 const MyBookings = () => {
     const [email, setEmail] = useState<string>("");
@@ -36,7 +37,7 @@ const MyBookings = () => {
                     />
                     <button
                         disabled={email?.trim() === ""}
-                        className="bg-primary text-white px-3 py-1 rounded-md text-nowrap tracking-wide disabled:opacity-95 disabled:cursor-not-allowed" onClick={fetchBookings}>
+                        className="submit-btn " onClick={fetchBookings}>
                         Get Bookings
                     </button>
                 </div>
@@ -94,14 +95,14 @@ export const BookingCard = ({
     return (
         <div
             key={id}
-            className="p-5 border border-gray-300 mt-3 rounded w-fit"
+            className="p-5 w-full border border-gray-300 mt-3 rounded shadow-md"
         >
             <h3>{expertName}</h3>
             <p className="mt-3">
                 <span className="text-gray-500">Date : </span>
                 {date.split("T")[0]}
             </p>
-            <p>
+            <p className="font-medium">
                 <span className="text-gray-500">Time : </span>
                 {timeSlot}</p>
             <p
@@ -113,3 +114,4 @@ export const BookingCard = ({
         </div>
     )
 }
+

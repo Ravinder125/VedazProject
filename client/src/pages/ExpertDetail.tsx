@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../api/axios";
 import { socket } from "../hooks/useSocket";
+import Container from "../components/ui/Container";
 
 interface SlotGroup {
     date: string;
@@ -92,7 +93,7 @@ const ExpertDetail = () => {
     if (!expert) return <p>Expert not found</p>;
 
     return (
-        <div style={{ padding: 40 }}>
+        <Container className="p-10">
             <h1>{expert.name}</h1>
             <h2 className="mb-1">{expert.category}</h2>
             <p className="italic">{expert.experience} years experience</p>
@@ -101,7 +102,10 @@ const ExpertDetail = () => {
             <h2 className="mt-10 mb-1">Available Slots</h2>
 
             {expert.availableSlots.map((group) => (
-                <div key={group.date} >
+                <div
+                    key={group.date}
+                    className="mt-2  text-sm font-medium"
+                >
                     <h4>{group.date.split("T")[0]}</h4>
                     {group.slots.length === 0 ? (
                         <p>No slots available</p>
@@ -109,7 +113,7 @@ const ExpertDetail = () => {
                         group.slots.map((slot) => (
                             <button
                                 key={slot}
-                                className="px-4 py-2 bg-primary text-white rounded hover:bg-blue-700 mr-2 mb-2 cursor-pointer"
+                                className="px-4 mt-1 py-2 bg-primary text-white rounded hover:bg-blue-700 mr-2 mb-2 cursor-pointer"
                                 onClick={() =>
                                     onViewDetails({
                                         id: expert._id,
@@ -123,7 +127,7 @@ const ExpertDetail = () => {
                     )}
                 </div>
             ))}
-        </div>
+        </Container>
     );
 };
 

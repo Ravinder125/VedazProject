@@ -4,7 +4,8 @@ import { api } from "../api/axios";
 import type { BookingState } from "../types/Booking";
 import { zodValidator } from "../utils/zodValidator";
 import { bookingSchema, type BookingFormData } from "../validation/bookingForm.schema";
-import Layout from "../components/ui/layou";
+import Layout from "../components/ui/Layout";
+import { InputBox } from "../components/ui/InputBox";
 
 
 
@@ -18,14 +19,15 @@ const InitialBookingForm = {
 
 
 const BookingForm = () => {
-    const { state }: { state: BookingState } = useLocation();
+    const location = useLocation();
+    const state = location.state as BookingState | undefined;
 
     const navigate = useNavigate();
 
     const [form, setForm] = useState<BookingFormData>(InitialBookingForm);
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>("");
 
     const handleInputChange = (key: keyof BookingFormData, value: string) => {
         setForm(prev => ({ ...prev, [key]: value }))
@@ -35,10 +37,10 @@ const BookingForm = () => {
         e.preventDefault();
 
         const {
-            data = null,
-            message = "Something went wrong",
-            success = false,
-            errors = null
+            data,
+            message = "Something went wrong", // For future use
+            success,
+            errors
         } = zodValidator<BookingFormData>(form, bookingSchema);
 
         if (!success) {
@@ -48,7 +50,9 @@ const BookingForm = () => {
 
         try {
             setLoading(true);
-
+            if (!state) {
+                return;
+            }
             await api.post("/bookings", {
                 ...data,
                 expertId: state.expertId,
@@ -154,30 +158,7 @@ const BookingForm = () => {
 
 export default BookingForm;
 
-export const InputBox = ({
-    className = "",
-    id = "",
-    name = "",
-    label = "",
-    props
-}: {
-    className?: string,
-    id?: string,
-    name?: string,
-    label?: string,
-    props?: React.ComponentProps<"input">
-}) => {
-    return <div className={"form-input--box flex flex-col gap-1 " + className}>
-        {label && (
-            <label htmlFor={id}>{label}</label>
-        )}
-        {/* <Input type="text" {...props} /> */}
-        <input type="text" name={name} className="form-input" id={id} {...props} />
-    </div>
-}
 
-// export const Input = ({ props }: { props: React.ComponentProps<"input"> }) => {
-//     return <input  {...props} />
-// }
+
 
 

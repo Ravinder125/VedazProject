@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import type { NavItem } from "./layou"
+import type { NavItem } from "./Layout"
 import Container from "./Container"
 
 const Navbar = ({ itemsList = [] }: { itemsList: NavItem[] }) => {
