@@ -3,6 +3,11 @@
 A full-stack application where users can discover experts, view
 available time slots, and book sessions in real time.
 
+## 🚀 Live Application
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge)](https://vedaz-project.vercel.app/)
+[![Backend API](https://img.shields.io/badge/API-Render-blue?style=for-the-badge)](https://vedazproject.onrender.com)
+
 ## Tech Stack
 
 Frontend: React, TypeScript, Vite, TailwindCSS, Axios, React Router,
