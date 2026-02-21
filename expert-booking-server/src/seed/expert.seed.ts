@@ -45,7 +45,7 @@ const seedExperts = async () => {
         rating: faker.number.float({
           min: 3,
           max: 5,
-          precision: 0.1,
+          // precision: 0.1,
         }),
         bio: faker.lorem.sentences(2),
         availableSlots: generateSlots(),
