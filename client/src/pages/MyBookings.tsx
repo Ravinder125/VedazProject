@@ -23,7 +23,7 @@ const MyBookings = () => {
 
     return (
         <Layout>
-            <Container className="p-5">
+            <Container className="p-10">
 
                 <h1>My Bookings</h1>
                 <div className="flex gap-2">

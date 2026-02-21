@@ -57,7 +57,7 @@ const Experts = () => {
 
     return (
         <Layout>
-            <Container>
+            <Container className="p-10">
 
                 <h1 className="text-3xl font-bold mb-6">Experts</h1>
 
